@@ -1,0 +1,9 @@
+<table class="table table-striped">
+  <tr ng-repeat="item in found.items">
+    <td>{{ item.name }}</td>
+    <td>{{ item.short_name }}</td>
+    <td>{{ item.description }}</td>
+    <td><button class="btn btn-danger" ng-click="found.onRemove({index: $index});">Don't want this one!</button></td>
+  </tr>
+</table>
+<div class="danger" ng-transclude></div>
