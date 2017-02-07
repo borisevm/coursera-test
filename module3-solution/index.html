@@ -4,7 +4,7 @@
     <title>Narrow Down Your Menu Choice</title>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
   </head>
@@ -18,7 +18,7 @@
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click="narrowed.narrowItDown(narrowed.searchTerm);">Narrow It Down For Me!</button>
     </div>
-    
+
     <found-items items="narrowed.found" on-remove="narrowed.removeItem(index)">
       <span ng-if="narrowed.message" class="alert alert-warning"><strong>{{narrowed.message}}</strong></span>
     </found-items>

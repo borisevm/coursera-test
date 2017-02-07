@@ -29,12 +29,12 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var narrowed = this;
 
-  narrowed.narrowItDown = function(searchTerm) {
+  narrowed.narrowItDown = function(searchTerm) {    
     var promise = MenuSearchService.getMatchedMenuItems(searchTerm)
     .then(function(foundItems) {
-      if (searchTerm === "") {
+      if (searchTerm === "" || searchTerm === undefined) {
         narrowed.found = [];
-        narrowed.message = "Nothing found";
+        narrowed.message = "Nothing found";        
       }
       else if (foundItems.length === 0) {
         narrowed.found = [];
@@ -53,8 +53,7 @@ function NarrowItDownController(MenuSearchService) {
 
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
-  var service = this;
-  var foundItems = [];
+  var service = this;  
 
   service.getAllMenuItems = function() {
     var response = $http({
@@ -66,20 +65,20 @@ function MenuSearchService($http, ApiBasePath) {
 
   service.getMatchedMenuItems = function(searchTerm) {
     var foundItems = [];
+    if (searchTerm !== undefined) {
+      var searchTerm = searchTerm.toLowerCase();
+    }
     return service.getAllMenuItems().then(function(response) {
       var allItems = response.data.menu_items;
       for (var i = 0; i < allItems.length; i++) {
-          var descrip = allItems[i].description;
-          if (descrip.toLowerCase().indexOf(searchTerm) !== -1) {
+          var description = allItems[i].description;
+          if (description.toLowerCase().indexOf(searchTerm) !== -1) {
             foundItems.push(allItems[i]);
            }
        }
       return foundItems;
     });
-  }
-  service.removeItem = function (itemIndex) {
-    foundItems.splice(itemIndex, 1);
-  };
+  }  
 }
 
 })();
