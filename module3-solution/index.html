@@ -17,12 +17,10 @@
     </div>
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click="narrowed.narrowItDown(narrowed.searchTerm);">Narrow It Down For Me!</button>
-    </div>
-
+    </div></br></br></br>
     <found-items items="narrowed.found" on-remove="narrowed.removeItem(index)">
       <span ng-if="narrowed.message" class="alert alert-warning"><strong>{{narrowed.message}}</strong></span>
     </found-items>
   </div>
-
 </body>
 </html>

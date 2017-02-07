@@ -29,12 +29,12 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var narrowed = this;
 
-  narrowed.narrowItDown = function(searchTerm) {    
+  narrowed.narrowItDown = function(searchTerm) {
     var promise = MenuSearchService.getMatchedMenuItems(searchTerm)
     .then(function(foundItems) {
       if (searchTerm === "" || searchTerm === undefined) {
         narrowed.found = [];
-        narrowed.message = "Nothing found";        
+        narrowed.message = "Nothing found";
       }
       else if (foundItems.length === 0) {
         narrowed.found = [];
@@ -53,7 +53,7 @@ function NarrowItDownController(MenuSearchService) {
 
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
-  var service = this;  
+  var service = this;
 
   service.getAllMenuItems = function() {
     var response = $http({
@@ -78,7 +78,7 @@ function MenuSearchService($http, ApiBasePath) {
        }
       return foundItems;
     });
-  }  
+  }
 }
 
 })();
