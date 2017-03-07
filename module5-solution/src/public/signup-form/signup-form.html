@@ -1,0 +1,64 @@
+<div class="container">
+  <fieldset>
+    <h2>Sign Up</h2>
+    <form name="signupForm" id="signupForm" novalidate>
+      <div class="form-group">
+        <label for="firstname">First name:</label>
+        <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Enter first name"
+        ng-model="signupCtrl.user.firstname"
+        required minlength="2">
+        <span
+        ng-if="(signupForm.firstname.$error.minlength || signupForm.firstname.$error.required) && signupForm.firstname.$touched">
+        First name must be at least 2 characters long
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last name:</label>
+      <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Enter last name"
+      ng-model="signupCtrl.user.lastname"
+      required minlength="2">
+      <span
+      ng-if="(signupForm.lastname.$error.minlength || signupForm.firstname.$error.required) && signupForm.lastname.$touched">
+      Last name must be at least 2 characters long
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input class="form-control" type="email" id="email" name="email" placeholder="Enter email"
+    ng-model="signupCtrl.user.email"
+    required>
+    <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+      Must be a valid email address: handle@domain format
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="phonen">Phone:</label>
+    <input class="form-control" type="text" id="phonen" name="phone" placeholder="Enter phone ###-###-####"
+    ng-model="signupCtrl.user.phone"
+    pattern="(\d{3})-(\d{3})-(\d{4})">
+    <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+      Phone must be in the format ###-###-####.
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="dish">Favorite dish:</label>
+    <input class="form-control" type="text" id="dish" name="dish" placeholder="Enter your favorite dish"
+    ng-model="signupCtrl.user.dish"
+    required>
+    <span ng-if="signupForm.dish.$error.required && signupForm.dish.$touched">
+      Must be filled
+    </span>
+  </div>
+  <br>
+    <button class="btn btn-danger" ng-disabled="signupForm.$invalid"
+    ng-click="signupCtrl.submit()">Submit</button>
+  </form>
+    <br>
+  <div class="text-danger" ng-if="!signupCtrl.success && signupForm.$valid">
+                {{signupCtrl.errormsg}}
+   </div>
+   <div class="text-success" ng-if="signupCtrl.success && signupForm.$valid">
+                 {{signupCtrl.errormsg}}
+    </div>
+</fieldset>
+</div>
